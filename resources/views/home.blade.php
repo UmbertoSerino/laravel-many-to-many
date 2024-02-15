@@ -23,6 +23,11 @@
                             Vai ai tipi
                         </button>
                     </a>
+                    <a href="{{ route('admin.technologies.index') }}" class="text-decoration-none">
+                        <button class="btn btn-primary m-2">
+                            Vai alle Tecnologie
+                        </button>
+                    </a>
 
                     {{ __('You are logged in!') }}
                 </div>
