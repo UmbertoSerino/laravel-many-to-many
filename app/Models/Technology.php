@@ -17,4 +17,9 @@ class Technology extends Model
         'released_date',
         'icon'
     ];
+    // relazione manyToMany su project
+    public function projects()
+    {
+        return $this->belongsToMany(Project::class);
+    }
 }
