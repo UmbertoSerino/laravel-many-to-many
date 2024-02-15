@@ -18,7 +18,7 @@ class Project extends Model
         return $this->belongsTo(Type::class);
     }
     // tabella ponte manyToMany
-    public function technology()
+    public function technologies()
     {
         return $this->belongsToMany(Technology::class);
     }
