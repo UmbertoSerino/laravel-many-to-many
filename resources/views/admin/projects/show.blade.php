@@ -12,8 +12,16 @@
                       <h5 class="card-title">Titolo: {{ $project['title'] }}</h5>
                       <p class="card-text">Data: {{ $project['date'] }}</p>
                       <p class="card-text">Descrizione: {{ $project['description'] }}</p>
+                      <p class="card-text">Tecnologie usate:</p>
+                      <ul>
+                          @foreach($project->technologies as $technology)
+                              <li>{{ $technology->name }}</li>
+                          @endforeach
+                      </ul>
+
                       <p class="card-text">Completato: {{ $project['complete'] ? 'ok' : 'non ancora'}}</p>
                       <p class="card-text">Tipo: {{ $project->type->name}}</p>
+        {{-- @dump($project->technologies()) --}}
                       
                       <a href="{{ route('admin.projects.index') }}">
                         <button class="btn btn-primary d-inline-block">Torna indietro</button>

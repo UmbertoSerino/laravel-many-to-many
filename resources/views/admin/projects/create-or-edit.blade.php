@@ -21,6 +21,8 @@
                 </ul>
             </div>
         @endif
+             {{-- @dump($technologies->pluck('name')) --}}
+             {{-- @dump($types) --}}
 
             <form action="@yield('route-for-create-or-edit')" method="POST">
                 @csrf
@@ -33,11 +35,21 @@
                     <label for="date" class="input-group-text">Data:</label>
                     <input class="form-control" type="date" name="date" id="date" value="{{ old('date', $project->date) }}">
                 </div>
-                <div class="form-check form-switch">
-                    <input type="hidden" name="complete" value="0">
-                    <input class="form-check-input" type="checkbox" role="switch" id="complete" name="complete" value="1">
-                    <label class="form-check-label" for="complete">Completato?</label>
-                </div> 
+                {{-- ------------------------- --}}
+                <div class="mb-3 input-group">
+                    <label for="technologies" class="me-4"><strong>Tecnologie usate:</strong></label>
+                    <div>
+                        @foreach ($technologies as $technology)
+                        {{-- Aggiungere il simbolo dell'array [] al name per poter scegliere più checkbox per lo stesso calmpo, altrimenti passa il valore dell'ultima checkbox selezionata --}}
+                            <input class="form-check-input" type="checkbox" name="technologies[]" id="technologies-{{ $technology->id }}" value="{{ $technology->id }}" 
+                            {{-- se la tech su cui sto ciclando è presente nelle tech che ho inviato e voglio rivederlo come errore, selezionalo, se invece non ho errori, cercalo all'iterno della lista delle tech presenti nel procjet --}}
+                            {{ in_array($technology->id, old('technologies', $project->technologies->pluck('id')->toArray())) ? 'checked' : '' }}>
+
+                            <label for="technologies-{{ $technology->id }}">{{ $technology->name }}</label>
+                        @endforeach
+                    </div>
+                </div>
+                {{-- ------------------------- --}}
                 <select class="form-select my-4" aria-label="Default select example" name="type_id" id="type_id">
                     <option selected>Seleziona il Tipo</option>
                     @forelse ($types as $type)
@@ -47,13 +59,15 @@
                         {{ $type->id == old('type_id', $project->type_id) ? 'selected' : ''}}
                         {{-- Fine condizione old e chiusura tag option--}}
                         >{{ $type->name }}</option>
-
-
                     @empty
                     <option value="3">Non ci sono tipi</option>
                     @endforelse
                   </select>
-
+                  <div class="form-check form-switch">
+                      <label class="form-check-label" for="complete">Completato?</label>
+                    <input type="hidden" name="complete" value="0">
+                    <input class="form-check-input" type="checkbox" role="switch" id="complete" name="complete" value="1">
+                </div> 
                 <div class="mb-3 input-group">
                     <label for="description" class="input-group-text">Descrizione:</label>
                     <textarea class="form-control"  name="description" id="description" cols="40" rows="10">{{ old('description',$project->description)  }}</textarea>
