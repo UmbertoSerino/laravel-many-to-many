@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Type;
 use App\Models\Project;
+use App\Models\Technology;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,7 +16,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
+        // $projects = Project::all();
+        $projects = Project::orderBy('date', 'DESC')->get();
         return view('admin.projects.index', compact('projects'));
     }
 
@@ -26,7 +28,8 @@ class ProjectController extends Controller
     {
         $project = new Project();
         $types = Type::all();
-        return view('admin.projects.create', compact('project', 'types'));
+        $technologies = Technology::all();
+        return view('admin.projects.create', compact('project', 'types', 'technologies'));
     }
 
     /**
@@ -39,11 +42,12 @@ class ProjectController extends Controller
             'description' => 'required', 'string',
             'date' => 'required', 'date',
             'complete' => 'required', 'boolean',
-            // Per validare l'id
             'type_id' => ['exists:types,id'],
+            'technologies' => ['exists:technology,id'],
         ]);
         $project = Project::create($data);
         $project->type_id = Auth::id();
+        $project->technologies()->sync($data['technologies']);
         return redirect()->route('admin.projects.show', $project);
     }
 
@@ -61,8 +65,10 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         $types = Type::all();
+        $technologies = Technology::all();
+        // dd($technologies);
 
-        return view('admin.projects.edit', compact('project', 'types'));
+        return view('admin.projects.edit', compact('project', 'types', 'technologies'));
     }
 
     /**
@@ -75,10 +81,12 @@ class ProjectController extends Controller
             'description' => 'required', 'string',
             'date' => 'required', 'date',
             'complete' => 'required', 'boolean',
-            // Per validare l'id
-            'type_id' => ['exists:types,id'],
+            'technologies' => ['exists:technologies,id'],
+            'type_id' =>  ['exists:types,id'],
         ]);
+
         $project->type_id = Auth::id();
+        // dd($data);
         $project->update($data);
         return redirect()->route('admin.projects.show', $project);
     }

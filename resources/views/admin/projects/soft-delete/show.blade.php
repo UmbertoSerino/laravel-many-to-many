@@ -12,6 +12,7 @@
                       <h5 class="card-title">Titolo: {{ $project['title'] }}</h5>
                       <p class="card-text">Data: {{ $project['date'] }}</p>
                       <p class="card-text">Descrizione: {{ $project['description'] }}</p>
+                      <p class="card-text">Descrizione: {{ $technology->name }}</p>
                       <p class="card-text">Completato: {{ $project['complete'] ? 'ok' : 'non ancora'}}</p>
                       <a href="{{ route('admin.projects.index') }}">
                         <button class="btn btn-primary d-inline-block">Torna indietro</button>
