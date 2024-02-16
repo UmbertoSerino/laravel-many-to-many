@@ -74,6 +74,9 @@ class ProjectController extends Controller
     /**
      * Update the specified resource in storage.
      */
+
+
+
     public function update(Request $request, Project $project)
     {
         $data = $request->validate([
@@ -81,13 +84,14 @@ class ProjectController extends Controller
             'description' => 'required', 'string',
             'date' => 'required', 'date',
             'complete' => 'required', 'boolean',
-            'technologies' => ['exists:technologies,id'],
             'type_id' =>  ['exists:types,id'],
+            'technologies' => ['exists:technologies,id'],
         ]);
 
         $project->type_id = Auth::id();
-        // dd($data);
+        $project->technologies()->sync($data['technologies']);
         $project->update($data);
+
         return redirect()->route('admin.projects.show', $project);
     }
 
