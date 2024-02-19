@@ -7,8 +7,8 @@ namespace Database\Seeders;
 use App\Models\Project;
 use App\Models\Type;
 use App\Models\Technology;
-
-
+use App\Models\User;
+use App\Models\UserProfile;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -25,6 +25,8 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         $this->call([
+            UserSeeder::class,
+            UserProfileSeeder::class,
             TypeSeeder::class,
             ProjectSeeder::class,
             TechnologySeeder::class,

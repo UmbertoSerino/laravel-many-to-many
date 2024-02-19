@@ -4,6 +4,8 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
 use App\Http\Controllers\Admin\TypeController as AdminTypeController;
 use App\Http\Controllers\Admin\TechnologyController as AdminTechnologyController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
+
 
 
 use Illuminate\Support\Facades\Auth;
@@ -39,6 +41,8 @@ Route::middleware('auth')
         Route::get('/project/softdelete/{project}', [AdminProjectController::class, 'showDelete'])->name('softdelete.show');
         Route::patch('/project/softdelete/{project}', [AdminProjectController::class, 'restoreDelete'])->name('softdelete.restore');
         Route::delete('/project/softdelete/{project}', [AdminProjectController::class, 'destroyDelete'])->name('softdelete.destroy');
+        // Route Resource User
+        Route::resource('/users', AdminUserController::class);
         // Route Resource Project
         Route::resource('/projects', AdminProjectController::class);
         // Route Resource Type

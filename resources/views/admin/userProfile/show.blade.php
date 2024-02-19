@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-<title>@yield('head-title', 'My Project - (Show)')</title>
+<title>@yield('head-title', 'My user - (Show)')</title>
 
 @section('main-content')
 <section class="container-heros-cards">
@@ -9,29 +9,29 @@
             <div class="col-12">
                 <div class="card m-auto">
                     <div class="card-body">
-                      <h5 class="card-title">Titolo: {{ $project['title'] }}</h5>
-                      <p class="card-text">Data: {{ $project['date'] }}</p>
-                      <p class="card-text">Descrizione: {{ $project['description'] }}</p>
+                      <h5 class="card-title">Titolo: {{ $user['name'] }}</h5>
+                      <p class="card-text">Data: {{ $user['date'] }}</p>
+                      <p class="card-text">Descrizione: {{ $user['description'] }}</p>
                       <p class="card-text">Tecnologie usate:</p>
                       <ul>
-                          @foreach($project->technologies as $technology)
+                          @foreach($user->technologies as $technology)
                               <li>{{ $technology->name }}</li>
                           @endforeach
                       </ul>
 
-                      <p class="card-text">Completato: {{ $project['complete'] ? 'ok' : 'non ancora'}}</p>
-                      <p class="card-text">Tipo: {{ $project->type->name}}</p>
-        {{-- @dump($project->technologies()) --}}
+                      <p class="card-text">Completato: {{ $user['complete'] ? 'ok' : 'non ancora'}}</p>
+                      <p class="card-text">Tipo: {{ $user->type->name}}</p>
+        {{-- @dump($user->technologies()) --}}
                       
                         <div class="col-12">
                             <span class="inline-block">Creato da: </span>
-                            <a href="{{ route('admin.userProfile.show') }}"><span>{{ $project->user->name }}</span></a>
+                            <a href=""><span>{{ $user->user->name }}</span></a>
                                 
                         </div>
-                      <a href="{{ route('admin.projects.index') }}">
+                      <a href="{{ route('admin.users.index') }}">
                         <button class="btn btn-primary d-inline-block">Torna indietro</button>
                       </a>
-                      @include('admin.projects.partials-button.button')
+                      @include('admin.users.partials-button.button')
                   </div>
                 </div>
             </div>

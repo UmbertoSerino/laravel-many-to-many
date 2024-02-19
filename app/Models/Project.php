@@ -11,7 +11,7 @@ class Project extends Model
     use HasFactory;
     use SoftDeletes;
     public $table = 'projects';
-    protected $fillable = ['title', 'type_id', 'description', 'date', 'complete'];
+    protected $fillable = ['title', 'type_id', 'user_id', 'description', 'date', 'complete'];
 
     public function type()
     {
@@ -21,5 +21,9 @@ class Project extends Model
     public function technologies()
     {
         return $this->belongsToMany(Technology::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

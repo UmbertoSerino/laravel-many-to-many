@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 class Technology extends Model
 {
     use HasFactory;
-    public $table = 'technologies';
     protected $fillable = [
         'name',
         'doc_link',

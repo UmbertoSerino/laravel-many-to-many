@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Models\Project;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-// usiamo libreria carbon
+use Faker\Factory as Faker;
 use Carbon\Carbon;
 
 
@@ -18,6 +18,9 @@ class ProjectSeeder extends Seeder
      */
     public function run(): void
     {
+
+        $faker = Faker::create(); // Creazione dell'istanza di Faker
+
         $projects = [
             [
                 'title' => 'laravel-primi-passi',
@@ -130,6 +133,7 @@ class ProjectSeeder extends Seeder
         ];
         foreach ($projects as $project) {
             $newProject = new Project();
+            $newProject->user_id = $faker->numberBetween(1, 10);
             $newProject->type_id = $project['type_id'];
             $newProject->title = $project['title'];
             $newProject->description = $project['description'];
