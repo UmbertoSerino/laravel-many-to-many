@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->date('date_of_birth');
-            $table->text('photo');
+            // $table->text('photo');
             $table->integer('phone_number')->unique();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users');

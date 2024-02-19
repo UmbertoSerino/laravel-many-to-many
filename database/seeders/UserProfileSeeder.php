@@ -23,7 +23,7 @@ class UserProfileSeeder extends Seeder
             $userProfile = new UserProfile();
             $userProfile->user_id = $userId;
             $userProfile->date_of_birth = $faker->date();
-            $userProfile->photo = $faker->imageUrl();
+            // $userProfile->photo = $faker->imageUrl();
             $userProfile->phone_number = $faker->randomNumber(9, true);
             $userProfile->save();
         }

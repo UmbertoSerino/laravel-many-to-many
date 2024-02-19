@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class UserProfile extends Model
 {
     use HasFactory;
+    protected $fillable = ['date_of_birth', 'phone_number'];
 
     public function user()
     {
 
-        return $this->belongTo(User::class);
+        return $this->belongsTo(User::class);
     }
 }

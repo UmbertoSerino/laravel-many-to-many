@@ -41,10 +41,10 @@ Route::middleware('auth')
         Route::get('/project/softdelete/{project}', [AdminProjectController::class, 'showDelete'])->name('softdelete.show');
         Route::patch('/project/softdelete/{project}', [AdminProjectController::class, 'restoreDelete'])->name('softdelete.restore');
         Route::delete('/project/softdelete/{project}', [AdminProjectController::class, 'destroyDelete'])->name('softdelete.destroy');
-        // Route Resource User
-        Route::resource('/users', AdminUserController::class);
         // Route Resource Project
         Route::resource('/projects', AdminProjectController::class);
+        // Route Resource User
+        Route::resource('/users', AdminUserController::class);
         // Route Resource Type
         Route::resource('/types', AdminTypeController::class);
         // Route Resource Technology
