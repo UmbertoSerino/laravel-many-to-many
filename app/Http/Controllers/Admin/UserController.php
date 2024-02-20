@@ -31,21 +31,25 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request);
         $data = $request->validate([
             'name' => ['required', 'max:80'],
             'email' => ['required', 'email'],
             'password' => ['required'],
             'date_of_birth' => ['required', 'date'],
-            'user_photo' => ['url', 'max:2048'],
+            'user_photo' => ['image', 'required'],
             'phone_number' => ['required'],
 
         ]);
+
+        $imageSrc = Storage::put('uploads/user', $data['user_photo']);
+        $data['user_photo'] = $imageSrc;
 
         $user = User::create($data);
         $user->userProfile()->create([
             'date_of_birth' => $data['date_of_birth'],
             'phone_number' => $data['phone_number'],
-            'user_photo' => $data['user_photo'],
+            'user_photo' => $imageSrc['user_photo'],
         ]);
 
         return redirect()->route('admin.users.show', $user);

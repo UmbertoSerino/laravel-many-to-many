@@ -46,9 +46,16 @@
                     <label for="phone_number" class="input-group-text">Numero di telefono:</label>
                     <input class="form-control" type="text" name="phone_number" id="phone_number" value="{{ old('phone_number', $user->userProfile) }}">
                 </div>
-                <div class="mb-3 input-group">
+                {{-- <div class="mb-3 input-group">
                     <label for="user_photo" class="input-group-text">Photo Profile:</label>
                     <input class="form-control" type="text" name="user_photo" id="user_photo" value="{{ old('user_photo', $user->userProfile)}}">
+                </div> --}}
+                <div class="mb-3 input-group">
+                    <label for="user_photo" class="input-group-text">Upload un immagine</label>
+                    <input class="form-control" type="file" name="user_photo" id="user_photo" value="{{ old('user_photo', $user->userProfile)}}">
+                </div>
+                <div class="mb-3 input-group">
+                    <img src="" alt="Image preview" class="d-none img-fluid" id="image-preview">
                 </div>
 
                 <div class="mb-3 input-group">
@@ -61,4 +68,11 @@
         </div>
     </div>
 </div>
+<script>
+    document.getElementById('user_photo').addEventListener('change', function(event){
+        const imageElement = document.getElementById('image-preview');
+        imageElement.setAttribute('src' , this.value);
+        imageElement.classList.remove('d-none');
+    });
+</script>
 @endsection
