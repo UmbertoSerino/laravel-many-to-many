@@ -40,19 +40,16 @@
                 </div>
                 <div class="mb-3 input-group">
                     <label for="date_of_birth" class="input-group-text">Data di nascita:</label>
-                    <input class="form-control" type="date" name="date_of_birth" id="date_of_birth" value="{{ old('date_of_birth') }}">
+                    <input class="form-control" type="date" name="date_of_birth" id="date_of_birth" value="{{ old('date_of_birth', $user->userProfile) }}">
                 </div>
                 <div class="mb-3 input-group">
                     <label for="phone_number" class="input-group-text">Numero di telefono:</label>
                     <input class="form-control" type="text" name="phone_number" id="phone_number" value="{{ old('phone_number') }}">
                 </div>
-
-
-
-                {{-- <div class="mb-3 input-group">
-                    <label for="photo" class="input-group-text">Photo Profile:</label>
-                    <input class="form-control" type="file" name="photo" id="photo" value="{{ old('photo', $user->photo)}}">
-                </div>             --}}
+                <div class="mb-3 input-group">
+                    <label for="user_photo" class="input-group-text">Photo Profile:</label>
+                    <input class="form-control" type="text" name="user_photo" id="user_photo" value="{{ old('user_photo', $user->userProfile)}}">
+                </div>
 
                 <div class="mb-3 input-group">
                     <button type="submit" class="m-2 btn btn-success d-line-block">Modifica</button>

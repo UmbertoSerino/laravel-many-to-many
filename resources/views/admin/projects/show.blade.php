@@ -25,7 +25,7 @@
                       
                         <div class="col-12">
                             <span class="inline-block">Creato da: </span>
-                            <a href="{{ route('admin.userProfile.show') }}"><span>{{ $project->user->name }}</span></a>
+                            <a href="{{ route('admin.users.show', ['user' => $project->user->id]) }}"><span>{{ $project->user->name }}</span></a>
                                 
                         </div>
                       <a href="{{ route('admin.projects.index') }}">

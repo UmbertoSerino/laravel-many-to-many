@@ -35,17 +35,17 @@
                     <td> {{ ($user->name)  }}</td>
                     <td>{{ $user->email }}</td>
                     <td>{{ $user->userProfile->date_of_birth }}</td>
-                    <td><img style="width: 70px; border-radius: 50%;" src="{{ $user->userProfile->photo }}" alt="photo {{ $user->name }}"></td>
-                    </td>
-                    <td>
-                        <a href="{{ route('admin.users.show', $user) }}">
-                            <button class="btn btn-primary m-2 inline-block">Mostra</button>
-                        </a>
-                        @include('admin.userProfile.partials-button.button')
-                    </td>
-                    @empty
-                    <td> Non ci sono progetti {{ Auth::user()->name }} </td>
-                    @endforelse 
+                    <td><img style="width: 70px; border-radius: 50%;" src="{{ $user->userProfile->user_photo }}" alt="photo {{ $user->name }}"></td>
+                  </td>
+                  <td>
+                    <a href="{{ route('admin.users.show', $user) }}">
+                      <button class="btn btn-primary m-2 inline-block">Mostra</button>
+                    </a>
+                    @include('admin.userProfile.partials-button.button')
+                  </td>
+                  @empty
+                  <td> Non ci sono progetti {{ Auth::user()->name }} </td>
+                  @endforelse 
                   </tr>
                 </tbody>
               </table>

@@ -36,18 +36,18 @@ class UserController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required'],
             'date_of_birth' => ['required', 'date'],
-            // 'photo' => ['required', 'photo'],
+            'user_photo' => ['url', 'max:2048'],
             'phone_number' => ['required'],
 
         ]);
-        // $imageSrc = Storage::put('uploads/users', $data['photo']);
 
         $user = User::create($data);
         $user->userProfile()->create([
             'date_of_birth' => $data['date_of_birth'],
             'phone_number' => $data['phone_number'],
-            // 'photo' => $imageSrc['photo'],
+            'user_photo' => $data['user_photo'],
         ]);
+        dd($data);
 
         return redirect()->route('admin.users.show', $user);
     }

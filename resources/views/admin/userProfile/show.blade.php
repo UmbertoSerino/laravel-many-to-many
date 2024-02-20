@@ -10,9 +10,10 @@
                 <div class="card m-auto">
                     <div class="card-body">
                       <h5 class="card-title">Nome: {{ $user['name'] }}</h5>
-                      {{-- <img style="width: 70px; border-radius: 50%;" src="{{ $user->userProfile->photo }}" alt="photo {{ $user->name }}"> --}}
+                      <img style="width: 70px; border-radius: 50%;" src="{{ $user->userProfile->user_photo }}" alt="photo {{ $user->name }}">
                       <p class="card-text">Email: {{ $user['email'] }}</p>
                       <p class="card-text">data di nascita: {{ $user->userProfile->date_of_birth }}</p>
+                      <p class="card-text">Numero di telefono: +39 {{ $user->userProfile->phone_number }}</p>
                       <p class="card-text">Altri Progetti:</p>
                       <ul>
                           @forelse ($user->projects as $project)
