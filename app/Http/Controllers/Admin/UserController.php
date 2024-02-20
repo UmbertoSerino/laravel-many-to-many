@@ -47,7 +47,6 @@ class UserController extends Controller
             'phone_number' => $data['phone_number'],
             'user_photo' => $data['user_photo'],
         ]);
-        dd($data);
 
         return redirect()->route('admin.users.show', $user);
     }
@@ -74,13 +73,26 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, user $user)
+    public function update(Request $request, User $user)
     {
-        $data = $request->all();
-        $user->update($data);
+        $userData = $request->validate([
+            'name' => ['required', 'max:80'],
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
 
-        return redirect()->route('admin.userProfile.show', $user);
+        $profileData = $request->validate([
+            'date_of_birth' => ['required', 'date'],
+            'user_photo' => ['url', 'max:2048'],
+            'phone_number' => ['required'],
+        ]);
+
+        $user->update($userData);
+        $user->userProfile()->update($profileData);
+
+        return redirect()->route('admin.users.show', $user);
     }
+
 
     /**
      * Remove the specified resource from storage.

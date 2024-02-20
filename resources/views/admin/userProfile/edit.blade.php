@@ -1,4 +1,4 @@
-@extends('admin.users.create-or-edit')
+@extends('admin.userProfile.create-or-edit')
 
 
 @section('route-for-create-or-edit')

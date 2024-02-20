@@ -44,7 +44,7 @@
                 </div>
                 <div class="mb-3 input-group">
                     <label for="phone_number" class="input-group-text">Numero di telefono:</label>
-                    <input class="form-control" type="text" name="phone_number" id="phone_number" value="{{ old('phone_number') }}">
+                    <input class="form-control" type="text" name="phone_number" id="phone_number" value="{{ old('phone_number', $user->userProfile) }}">
                 </div>
                 <div class="mb-3 input-group">
                     <label for="user_photo" class="input-group-text">Photo Profile:</label>
