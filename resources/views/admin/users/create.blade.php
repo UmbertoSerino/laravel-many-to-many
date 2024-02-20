@@ -1,4 +1,4 @@
-@extends('admin.userProfile.create-or-edit')
+@extends('admin.users.create-or-edit')
 
 
 

@@ -41,7 +41,7 @@
                     <a href="{{ route('admin.users.show', $user) }}">
                       <button class="btn btn-primary m-2 inline-block">Mostra</button>
                     </a>
-                    @include('admin.userProfile.partials-button.button')
+                    @include('admin.users.partials-button.button')
                   </td>
                   @empty
                   <td> Non ci sono progetti {{ Auth::user()->name }} </td>
